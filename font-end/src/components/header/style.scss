@@ -1,0 +1,36 @@
+header{
+    padding-top: 1rem ;
+    padding-bottom: .5rem;
+    div{
+      
+        .danhmuc{
+            &>ul{
+               list-style-type: none;
+               display: flex;
+               justify-content:space-between;
+               margin-bottom: 0;
+               
+              
+               }
+               ul{
+                list-style-type: none;
+                padding-left: .5rem;
+                li{
+                    cursor: pointer;
+                    color: blue($color: #000000)
+                   
+                }
+                li.auth{
+                    text-align: right;
+
+                }
+            }
+            }
+          
+        }
+      
+
+    
+
+  
+}

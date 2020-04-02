@@ -1,0 +1,13 @@
+.outline{
+    &:focus{
+        outline: none;
+    }
+}
+.custom_aTag{
+    text-decoration: none;
+    color: black;
+    &:hover{
+        text-decoration: none;
+        color: black
+    }
+}

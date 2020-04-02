@@ -1,0 +1,28 @@
+.uudai#uudai{
+    margin-top: 2rem;
+    div{
+        h2{
+            position: relative;
+            color: #4b5156;
+            font-size: 25px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            &::after{
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                top: 100%;
+                left: 0;
+                background-color: #031425;
+            }
+        }
+        .silde{
+            img{
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

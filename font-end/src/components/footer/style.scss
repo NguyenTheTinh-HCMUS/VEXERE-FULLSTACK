@@ -1,0 +1,51 @@
+footer{
+    margin-top: 2rem;
+    .footer_top{
+        background-color: rgb(243, 243, 243);
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        div{
+          
+             
+                div{
+                    .heading{
+                        font-size: 23px;
+                    }
+                    .items{
+                        img{
+                            display: block;
+                            width: 150px;
+                            height: 80px;
+                            margin-bottom: .5rem;
+                        }
+                        p{
+                            transition: all.5s;
+                            cursor: pointer;
+                            &:hover{
+                                color: blue;
+                            }
+                        }
+                    }
+                }
+    
+          
+          
+        }
+    }
+    .footer_bottom{
+        padding-top: 20px;
+        padding-bottom: 10px;
+        div{
+            margin: 0 auto;
+            text-align: center;
+            h3{
+                font-size: 25px;
+            }
+            p{
+                margin: 0;
+            }
+        }
+    }
+    
+  
+}
