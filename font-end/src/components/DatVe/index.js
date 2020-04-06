@@ -19,7 +19,14 @@ function DatVe(props) {
       props.get_ds_DiaDiemDen_request(abc._id)
       setopenItem(1)
     }
- 
+    const handleNoiDen=(abc)=>{
+
+      props.dispatch_ngayDi(abc._id)
+    }
+ const handlOnclick=()=>{
+  setcheckSerach(true)
+  props.timChuyenXe(props.tuyen , props.ngayDi)
+ }
   return (
     <div id="datve">
       <div className="image">
@@ -34,7 +41,7 @@ function DatVe(props) {
             </div>
 
             <div className="thanh-search--item">
-              <DiaDiem choosePlace={abc => props.dispatch_ngayDi(abc._id)} id="diemden"  ds_diaDiem={props.ds_diaDiemDen.ds_diemDen ?  props.ds_diaDiemDen.ds_diemDen : [] } type={'den'} />
+              <DiaDiem choosePlace={abc => handleNoiDen(abc)} id="diemden"  ds_diaDiem={props.ds_diaDiemDen.ds_diemDen ?  props.ds_diaDiemDen.ds_diemDen : [] } type={'den'} />
             </div>
             <div className="thanh-search--item">
               <NgayDiChuyenXe choosePlace={abc => props.choose_ngayDi(abc)}  ds_ngay={props.ds_Ngay } type={'den'}  id="ngay" />
@@ -44,7 +51,8 @@ function DatVe(props) {
                 variant="contained"
                 color="secondary"
                 className="search-button outline"
-                onClick={()=>setcheckSerach(true)}
+                onClick={handlOnclick}
+                disabled={(props.tuyen && props.ngayDi)? false : true }
               >
                 {checkSerach ?  <CircularProgress /> : 'Tìm Vé'}
               </Button>
@@ -64,6 +72,9 @@ const mapDispatchToProps=dispatch=>({
 const mapStateToProps=state=>({
   ds_diaDiem:state.trangChuReducer.diaDiem,
   ds_diaDiemDen: state.trangChuReducer.ds_diaDiemDen,
-  ds_Ngay: state.trangChuReducer.ds_Ngay
+  ds_Ngay: state.trangChuReducer.ds_Ngay,
+  tuyen: state.trangChuReducer.tuyen,
+  ngayDi: state.trangChuReducer.ngayDi,
+
 })
 export default connect(mapStateToProps,mapDispatchToProps) (DatVe)

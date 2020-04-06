@@ -3,6 +3,7 @@ import loc from '../../utils/locNgay'
 const initialState = {
     diaDiem: [],
     ds_diaDiemDen: [],
+    tuyen: null    ,
     ds_Ngay: [],
     ngayDi: null
 }
@@ -30,10 +31,12 @@ const trangChuReducer= (state = initialState, action) => {
 
         }
         case TYPES.DISPATCH_NGAYDI :{
-            console.log(action)
             const pos=state.ds_diaDiemDen.ds_diemDen.findIndex(item=>item._id===action._id)
             if(pos>=0){
+               
+                 state.tuyen=state.ds_diaDiemDen.ds_diemDen[pos].ds_chuyenXe[0].tuyen
                 const ds_chuyenXe= state.ds_diaDiemDen.ds_diemDen[pos].ds_chuyenXe
+                state.ngayDi=null
                state.ds_Ngay=loc(ds_chuyenXe)
             }
            

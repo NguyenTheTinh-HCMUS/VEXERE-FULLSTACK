@@ -3,6 +3,7 @@ import Login from './pages/auth/login'
 import Signup from './pages/auth/sigup'
 import XacNhanMatKhau from './pages/XacNhanMatKhau'
 import NotFound from './pages/NotFound'
+import TimChuyenXe from './pages/timchuyenxe'
 export const routeHome=[
     {
         path: '/',
@@ -24,6 +25,12 @@ export const routeHome=[
         exact: false,
         component: XacNhanMatKhau
     },
+    {
+        path: '/TimChuyenXe/:tuyenDuong/:ngayDi',
+        exact: false,
+        component: TimChuyenXe
+    }
+    ,
     {
         path: '',
         exact: false,

@@ -1,0 +1,60 @@
+.chi-tiet-chuyen-xe{
+    margin-bottom: 1rem;
+    background-color: #f1f1f1f1;
+   
+    .heading{
+        color: cornflowerblue;
+        text-align: right;
+
+    }
+    .content{
+        display: flex;
+       
+        .content-left{
+            img{
+                display: block;
+                width: 150px;
+                height: 150px;
+                border-radius: 2px;
+
+            }
+        }
+
+    }
+    .content-center{
+        margin-left: 1rem;
+        p{
+            .content-center-daily{
+                font-weight: bold;
+                padding-right: 1rem;
+                margin-right: 2rem;
+            }
+        }
+       
+        .from-to{
+            position: relative;
+            .from-to-content{
+                height: 74px;
+                margin-left: 20px;
+                position: absolute;
+                width: 400px;
+                
+                top:0;
+             
+                .content-from{
+                  
+                    display: flex;
+                }
+                .content-to{
+                    display: flex;
+                }
+            }
+        }
+    }
+    .content-right{
+        font-size: 25px;
+        font-weight: bold;
+        color: cornflowerblue;
+        text-align: right;
+    }
+}

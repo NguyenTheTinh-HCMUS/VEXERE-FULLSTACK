@@ -4,16 +4,16 @@ import UuDai from '../../components/UuDai'
 
 import Footer from '../../components/footer'
 import Header from '../../components/header'
-
-
- 
-export class Home extends Component {
+class Home extends Component {
+    handleTimChuyenXe=(tuyenDuong,ngayDi)=>{
+        this.props.history.push(`/TimChuyenXe/${tuyenDuong}/${ngayDi}`)
+    }
     render() {
         return (
            <Fragment>
                <Header />
-               <DatVe />
-               <UuDai />
+               <DatVe timChuyenXe={this.handleTimChuyenXe} />
+               <UuDai  />
               
                
                <Footer />
@@ -23,4 +23,5 @@ export class Home extends Component {
     }
 }
 
-export default Home
+
+export default  Home

@@ -18,6 +18,11 @@ function DiaDiem(props) {
       inputRef.current.value=''
     }
   }, [props.ds_diaDiemDen])
+  // useEffect(() => {
+  //   if(props.type==='den'){
+  //     inputRef.current.value=''
+  //   }
+  // }, [props.ds_diaDiemDen])
   useEffect(() => {
     setItems(props.ds_diaDiem)
   }, [props.ds_diaDiem])

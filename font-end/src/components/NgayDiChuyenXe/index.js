@@ -16,6 +16,9 @@ function NgayDiChuyenXe(props) {
   useEffect(() => {
     inputRef.current.value=''
   }, [props.ds_diaDiemDen])
+  useEffect(() => {
+    inputRef.current.value=''
+  }, [props.ds_Ngay])
 
   const outsideClickListener = e => {
     if (!document.getElementById(props.id).contains(e.target)) {
@@ -97,7 +100,8 @@ const mapDispatchToprops=dispatch=>({
   reset: (pos)=>dispatch(reset_diaDiem(pos))
 })
 const mapStateToProps=state=>({
-  ds_diaDiemDen: state.trangChuReducer.ds_diaDiemDen
+  ds_diaDiemDen: state.trangChuReducer.ds_diaDiemDen,
+  ds_Ngay: state.trangChuReducer.ds_Ngay
 })
 
 export default connect(mapStateToProps,mapDispatchToprops) (NgayDiChuyenXe)

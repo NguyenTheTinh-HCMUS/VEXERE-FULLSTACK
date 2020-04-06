@@ -7,3 +7,5 @@ export const POST_TAIKHOAN_DANGNHAP=host+'TaiKhoan/DangNhap'
 export const POST_KIEMTRAHANTOKEN=host+'XacNhanMail/KiemTraHanToken'
 
 export const POST_THAYDOIMATKHAU=host+'XacNhanMail/ThayDoiMatKhau'
+
+export const POST_TIMCHUYENXE=host+'TimChuyenXe'

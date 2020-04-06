@@ -1,0 +1,23 @@
+.danh-gia{
+    border-top: 1px solid #fcfcfc;
+    padding-top: 1rem;
+    &__avatar{
+        text-align: center;
+    }
+    &__content{
+        .content__text{
+            margin-bottom: 0;
+        }.content__like{
+            .like__thum{
+                &.thum--blue{
+                    color: blue;
+                }
+            }
+            .like__number{
+                padding-left: .3rem;
+            }
+        }
+    }
+    
+
+}
