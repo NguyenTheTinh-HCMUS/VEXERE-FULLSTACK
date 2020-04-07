@@ -31,7 +31,8 @@ export default function DanhGia(props) {
     return (
         <div className='danh-gia row'>
             <div className='danh-gia__avatar col-3'>
-            <Avatar className={classes.avatar}  alt="Remy Sharp" src={props.danhGia.taiKhoan.hinhAnh} />
+            <Avatar className={classes.avatar}  alt="Remy Sharp" 
+            src={props.danhGia.taiKhoan.hinhAnh.startsWith("http")?props.danhGia.taiKhoan.hinhAnh: `http://${props.danhGia.taiKhoan.hinhAnh}`} />
     <p>{props.danhGia.taiKhoan.ten}</p>
             </div>
             <div className='danh-gia__content col-9'>

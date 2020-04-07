@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import './style.scss'
 import moment from 'moment'
 import TabChuyenXe from "../tab-chuyen-xe";
+// import {connect} from 'react-redux'
 const useStyles = makeStyles((theme) => ({
     root: {
       minWidth: 750,
@@ -39,8 +40,8 @@ export default function ChuyenXe(props) {
  
   return (
     <div className="chi-tiet-chuyen-xe">
-      <Paper className={`p-3 ${classes.root}`}>
-        <div className="heading mb-3">40 chỗ còn trống</div>
+      <Paper className={`p-1 ${classes.root}`}>
+        <div className="heading mb-2">40 chỗ còn trống</div>
         <div className="content">
           <div className="content-left">
             <img
@@ -124,3 +125,4 @@ export default function ChuyenXe(props) {
     </div>
   );
 }
+

@@ -44,7 +44,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: '100%',
+   
   },
+  danhGia:{
+    maxHeight:500,
+    overflowY:'auto'
+  }
 }));
 
 export default function TabChuyenXe(props) {
@@ -63,7 +68,7 @@ export default function TabChuyenXe(props) {
  
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      {/* <AppBar position="static" color="default"> */}
         <Tabs
           value={value}
           onChange={handleChange}
@@ -77,7 +82,7 @@ export default function TabChuyenXe(props) {
           <Tab label="Đánh Giá" {...a11yProps(2)} className='outline' />
         
         </Tabs>
-      </AppBar>
+      {/* </AppBar> */}
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
@@ -89,9 +94,9 @@ export default function TabChuyenXe(props) {
         <TabPanel value={value} index={1} dir={theme.direction}>
           Tiện Ích
         </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
+        <TabPanel value={value} index={2} dir={theme.direction} className={classes.danhGia}>
          <DanhSachDanhGia danhSach={props.thongTin.thongTinXe.danhSachDanhGia} />
-         <FormDanhGia />
+         <FormDanhGia thongTin={props.thongTin} />
 
         </TabPanel>
        

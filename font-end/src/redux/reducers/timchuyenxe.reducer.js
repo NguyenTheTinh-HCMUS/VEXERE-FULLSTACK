@@ -15,6 +15,15 @@ const initialState = {
             state.loaded=true
             return {...state}
         }
+        case TYPES.THEM_DANHGIA:{
+        
+            const pos=state.ds_hienThi.findIndex(item=>item.thongTinXe._id===action.danhGia.xe)
+            const temp=JSON.parse(JSON.stringify(state.ds_hienThi[pos]))
+            temp.thongTinXe.danhSachDanhGia=[...temp.thongTinXe.danhSachDanhGia,action.danhGia]
+            state.ds_hienThi=[...state.ds_hienThi.slice(0,pos),temp,...state.ds_hienThi.slice()]
+    
+            return {...state}
+        }
 
   
     default:

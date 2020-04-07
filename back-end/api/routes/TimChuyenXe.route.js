@@ -37,14 +37,23 @@ const TimDaiLy=async(xeId)=>{
 }
 
 
-const TimDanhGia=async(xeId)=>{
+const TimDanhGia=async(xeId,req)=>{
     const danhGia=await DanhGia.find({xe:xeId}).select(
         '_id sao ds_Like ngay noiDung taiKhoan'
     ).populate('taiKhoan','_id ten hinhAnh')
-    return danhGia
+    let customDanhGia=danhGia.map(item=>{
+        if(item.taiKhoan.hinhAnh.startsWith("/uploads")){
+            item.taiKhoan.hinhAnh= req.headers.host+item.taiKhoan.hinhAnh
+            
+        }
+      
+        return item
+    })
+    return customDanhGia
 }
 
 router.post("/",async(req,res)=>{
+    
     
    try{
     const data={}
@@ -95,7 +104,7 @@ router.post("/",async(req,res)=>{
         _ttXe.bienSo=chuyenXe[i].xe.bienSo
         const daiLy=await TimDaiLy(chuyenXe[i].xe._id)
         _ttXe.daiLyXe=daiLy
-        _ttXe.danhSachDanhGia=await TimDanhGia(chuyenXe[i].xe._id)
+        _ttXe.danhSachDanhGia=await TimDanhGia(chuyenXe[i].xe._id,req)
 
         temp.thongTinXe=_ttXe
 
