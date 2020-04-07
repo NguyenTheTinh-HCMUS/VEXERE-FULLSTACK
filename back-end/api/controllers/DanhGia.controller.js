@@ -41,7 +41,9 @@ module.exports.Like=async(req,res)=>{
            throw new Error('Tai Khoan Khong Ton Tai')
        }
        
-        const doc=await DanhGia.findById(req.body.danhGia)
+        const doc=await DanhGia.findById(req.body.danhGia).populate({
+            path: 'taiKhoan', select: '_id hinhAnh ten'
+        })
       
         const pos=doc.ds_Like.findIndex(item=>{
             
@@ -54,6 +56,9 @@ module.exports.Like=async(req,res)=>{
             doc.ds_Like=[...doc.ds_Like,req.body.taiKhoan]
         }
         const newDoc=await doc.save()
+        if(newDoc.taiKhoan.hinhAnh.startsWith("/uploads")){
+            newDoc.taiKhoan.hinhAnh= req.headers.host+newDoc.taiKhoan.hinhAnh
+        }
         res.status(200).json(newDoc)
     }
     catch(error){

@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+   
+    
+}
+body{
+    width: 100vw;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    
+   
+}

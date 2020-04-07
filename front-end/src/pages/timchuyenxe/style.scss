@@ -1,0 +1,34 @@
+.ds_chuyenxe{
+    display: flex;
+    position: relative;
+    .box-boloc{
+        // position: absolute;
+        // width: 100%;
+        .header-boloc{
+            display: flex;
+            justify-content: space-between;
+            p{
+                margin: 0;
+               &:last-child{
+                   color: blue;
+                   cursor: pointer;
+               }
+            }
+        }
+        .boloc{
+            padding: 1rem;
+            border: 1px solid #c0c0c0;
+          
+         
+        }
+
+    }
+    .box-chuyenxe{
+        padding-left: 1rem;
+        .sapxep{
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+  
+}
