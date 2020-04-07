@@ -48,10 +48,7 @@ app.use('/DanhGia',DanhGiaRouter)
 
 
 // set not found when find router
-app.use((req,res,next)=>{
 
-
-})
 app.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
@@ -67,7 +64,11 @@ app.use((err, req, res, next) => {
 
 
 
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is runing at  ${port}`);
 });
+const socket=require('./socket')
+socket(app)
+

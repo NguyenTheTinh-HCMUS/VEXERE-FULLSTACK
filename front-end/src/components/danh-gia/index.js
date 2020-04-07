@@ -9,6 +9,7 @@ import callApi from '../../utils/callApi'
 import {POST_LIKE} from '../../constants/config.api'
 import {Like_Action} from '../../redux/actions/timchuyenxe.action'
 import {connect} from 'react-redux'
+
 const useStyle=makeStyles(them=>({
     avatar: {
         width: 70,
@@ -27,7 +28,10 @@ const useStyle=makeStyles(them=>({
  function DanhGia(props) {
     const classes=useStyle()
     const [like, setlike] = React.useState(props.like||false)
+  
     React.useEffect(() => {
+    
+        
     if(localStorage.getItem('TAIKHOAN')  ){
         const pos= props.danhGia.ds_Like.findIndex(item=>
             item===JSON.parse(localStorage.getItem('TAIKHOAN'))._id)
@@ -43,6 +47,24 @@ const useStyle=makeStyles(them=>({
         setlike(false)
     }
     }, [])
+    React.useEffect(() => {
+        if(localStorage.getItem('TAIKHOAN')  ){
+            const pos= props.danhGia.ds_Like.findIndex(item=>
+                item===JSON.parse(localStorage.getItem('TAIKHOAN'))._id)
+            if(pos>-1){
+                setlike(true)
+            }
+            else{
+                setlike(false)
+            }
+          
+        }
+        else{
+            setlike(false)
+        }
+      
+        }, [props.ds_hienThi])
+   
     const handleLike=()=>{
         // console.log(like)
         // setlike(prev=>!prev)
@@ -57,7 +79,7 @@ const useStyle=makeStyles(them=>({
                         xe: props.xe,
                         danhGia: res.data
                     })
-                    setlike(prev=>!prev)
+                    // setlike(prev=>!prev)
                 }
             ).
             catch(err=>console.log(err))
@@ -101,4 +123,7 @@ const useStyle=makeStyles(them=>({
 const dispatchToProps=dispatch=>({
     handleLike: danhGia=>dispatch(Like_Action(danhGia))
 })
-export default connect(null,dispatchToProps) (DanhGia)
+const mapDispatchToProps=state=>({
+    ds_hienThi:  state.timChuyenXe.ds_hienThi
+})
+export default connect(mapDispatchToProps,dispatchToProps) (DanhGia)

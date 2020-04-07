@@ -11,3 +11,6 @@ export const POST_THAYDOIMATKHAU=host+'XacNhanMail/ThayDoiMatKhau'
 export const POST_TIMCHUYENXE=host+'TimChuyenXe'
 export const POST_THEMDANHGIA=host+'DanhGia/ThemDanhGia'
 export const POST_LIKE=host+'DanhGia/Like'
+
+
+export const SOCKET_SERVER='http://localhost:3001/'

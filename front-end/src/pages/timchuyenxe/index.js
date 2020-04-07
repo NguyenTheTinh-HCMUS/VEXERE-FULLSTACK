@@ -9,6 +9,11 @@ import "./style.scss";
 import BoLoc from "../../components/BoLoc";
 import Sort from "../../components/sort";
 import DanhSachChuyenXe from "../../components/danh-sach-chuyen-xe";
+import io from 'socket.io-client'
+import {SOCKET_SERVER} from '../../constants/config.api'
+import {Like_Socket} from '../../redux/actions/timchuyenxe.action'
+
+
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -21,12 +26,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 function TimChuyenXe(props) {
   const classes = useStyles();
+  const [socket, setsocket] = useState(null)
   useEffect(() => {
+    setsocket(io(SOCKET_SERVER))
     props.thongTinChuyenXe_request(
       props.match.params.tuyenDuong,
       props.match.params.ngayDi
     );
   }, []);
+  useEffect(() => {
+    if(socket){
+      socket.on('Handle-Like-Server',like=>{
+     
+        props.Like_Action(like)
+      })
+    }
+   
+  }, [socket])
+  useEffect(() => {
+    if(props.soketLike){
+      socket.emit('Handle-Like-Client',props.soketLike)
+     
+    }
+  }, [props.soketLike])
   return (
     <Fragment>
       <Header />
@@ -66,11 +88,13 @@ function TimChuyenXe(props) {
 const mapStateToProps = (state) => ({
   loaded: state.timChuyenXe.loaded,
   thongTinChuyenXe: state.timChuyenXe.thongTinChuyenXe,
-  ds_hienThi: state.timChuyenXe.ds_hienThi
+  ds_hienThi: state.timChuyenXe.ds_hienThi,
+  soketLike:  state.timChuyenXe.soketLike
 });
 const mapDispatchToProps = (dispatch) => ({
   thongTinChuyenXe_request: (tuyenDuong, ngayDi) =>
     dispatch(thongTinChuyenXe_request(tuyenDuong, ngayDi)),
+    Like_Action: like=>dispatch(Like_Socket(like))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimChuyenXe);

@@ -51,6 +51,7 @@
     "react-swipeable-views": "^0.13.9",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "socket.io-client": "^2.3.0"
   }
 }

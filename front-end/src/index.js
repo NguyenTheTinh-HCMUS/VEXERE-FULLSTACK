@@ -24,9 +24,17 @@ ReactDOM.render(
          <App />
 
     </Provider>
-  
-       
-      
    , 
     document.getElementById('root')
 );
+
+// const store=createStore(rootReducers,
+//     applyMiddleware(thunk))
+// ReactDOM.render(
+//     <Provider store={store}>
+//          <App />
+
+//     </Provider>
+//    , 
+//     document.getElementById('root')
+// );

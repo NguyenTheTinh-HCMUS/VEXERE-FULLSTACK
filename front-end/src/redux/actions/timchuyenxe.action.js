@@ -34,3 +34,8 @@ export const Like_Action=thongTinDanhGia=>({
     type: Types.DISPATCH_LIKE,
     thongTinDanhGia
 })
+
+export const Like_Socket=thongTinDanhGia=>({
+    type: Types.SOCKET_LIKE,
+    thongTinDanhGia
+})

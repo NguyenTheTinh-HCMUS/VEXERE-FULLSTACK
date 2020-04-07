@@ -2,7 +2,8 @@ import  * as TYPES from '../types/index'
 const initialState = {
     thongTinChuyenXe: {},
     loaded: false,
-    ds_hienThi: []
+    ds_hienThi: [],
+    soketLike:null
 }
  const timChuyenXe =(state = initialState, action) => {
     switch (action.type) {
@@ -26,13 +27,36 @@ const initialState = {
         }
         case TYPES.DISPATCH_LIKE:{
             // console.log(action.thongTinDanhGia.xe)
+            state.soketLike=action.thongTinDanhGia
             const pos=state.ds_hienThi.findIndex(item=>item.thongTinXe._id===action.thongTinDanhGia.xe)
 
-            const pos1=state.ds_hienThi[pos].thongTinXe.danhSachDanhGia.findIndex(item=>item._id===action.thongTinDanhGia.danhGia._id)
-            const temp=JSON.parse(JSON.stringify(state.ds_hienThi[pos]))
-            temp.thongTinXe.danhSachDanhGia[pos1]=action.thongTinDanhGia.danhGia
            
-            state.ds_hienThi=[...state.ds_hienThi.slice(0,pos),temp,...state.ds_hienThi.slice(pos+1)]
+            if(pos>-1){
+                const pos1=state.ds_hienThi[pos].thongTinXe.danhSachDanhGia.findIndex(item=>item._id===action.thongTinDanhGia.danhGia._id)
+                const temp=JSON.parse(JSON.stringify(state.ds_hienThi[pos]))
+                temp.thongTinXe.danhSachDanhGia[pos1]=action.thongTinDanhGia.danhGia
+               
+                state.ds_hienThi=[...state.ds_hienThi.slice(0,pos),temp,...state.ds_hienThi.slice(pos+1)]
+
+            }
+           
+            return {...state}
+        }
+        case TYPES.SOCKET_LIKE:{
+            // console.log(action.thongTinDanhGia.xe)
+            // state.soketLike=action.thongTinDanhGia
+            const pos=state.ds_hienThi.findIndex(item=>item.thongTinXe._id===action.thongTinDanhGia.xe)
+
+           
+            if(pos>-1){
+                const pos1=state.ds_hienThi[pos].thongTinXe.danhSachDanhGia.findIndex(item=>item._id===action.thongTinDanhGia.danhGia._id)
+                const temp=JSON.parse(JSON.stringify(state.ds_hienThi[pos]))
+                temp.thongTinXe.danhSachDanhGia[pos1]=action.thongTinDanhGia.danhGia
+               
+                state.ds_hienThi=[...state.ds_hienThi.slice(0,pos),temp,...state.ds_hienThi.slice(pos+1)]
+
+            }
+           
             return {...state}
         }
 
