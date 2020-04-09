@@ -39,3 +39,7 @@ export const Like_Socket=thongTinDanhGia=>({
     type: Types.SOCKET_LIKE,
     thongTinDanhGia
 })
+export const DanhGia_Socket=danhGia=>({
+    type: Types.SOCKET_DANHGIA,
+    danhGia
+})

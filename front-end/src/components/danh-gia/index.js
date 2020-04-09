@@ -66,8 +66,7 @@ const useStyle=makeStyles(them=>({
         }, [props.ds_hienThi])
    
     const handleLike=()=>{
-        // console.log(like)
-        // setlike(prev=>!prev)
+      
         if(localStorage.getItem('TAIKHOAN')){
             callApi('POST',POST_LIKE,{
                 danhGia: props.danhGia._id,
@@ -79,7 +78,7 @@ const useStyle=makeStyles(them=>({
                         xe: props.xe,
                         danhGia: res.data
                     })
-                    // setlike(prev=>!prev)
+                   
                 }
             ).
             catch(err=>console.log(err))

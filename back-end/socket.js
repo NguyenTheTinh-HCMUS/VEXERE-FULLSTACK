@@ -10,6 +10,9 @@ module.exports = (app) => {
     socket.on('Handle-Like-Client',like=>{
         socket.broadcast.emit('Handle-Like-Server',like)
     })
+    socket.on('Handle-DanhGia-Client',data=>{
+        socket.broadcast.emit('Handle-DanhGia-Server',data)
+    })
   });
   server.listen(3001, () => {
     console.log("Socket Server is running 3001");

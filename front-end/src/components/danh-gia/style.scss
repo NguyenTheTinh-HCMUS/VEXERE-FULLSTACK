@@ -7,6 +7,7 @@
     &__content{
         .content__text{
             margin-bottom: 0;
+
         }.content__like{
             .like__thum{
                 &.thum--blue{
@@ -16,6 +17,11 @@
             .like__number{
                 padding-left: .3rem;
             }
+        }
+        .content__ngay{
+            font-size: 12px;
+            margin-bottom: .5rem;
+            color: #818e7f;
         }
     }
     

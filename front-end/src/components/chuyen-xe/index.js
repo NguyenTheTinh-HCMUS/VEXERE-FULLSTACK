@@ -1,44 +1,62 @@
 import React from "react";
 import "./style.scss";
-import clsx from 'clsx';
-import {Paper,Collapse,CardContent,Typography,IconButton} from "@material-ui/core";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { makeStyles } from '@material-ui/core/styles';
-import './style.scss'
-import moment from 'moment'
+import clsx from "clsx";
+import {
+  Paper,
+  Collapse,
+  CardContent,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { makeStyles } from "@material-ui/core/styles";
+import "./style.scss";
+import moment from "moment";
+import momentDurationFormatSetup from 'moment-duration-format'
 import TabChuyenXe from "../tab-chuyen-xe";
-import '../scss/index.scss'
+import "../scss/index.scss";
+momentDurationFormatSetup(moment)
 // import {connect} from 'react-redux'
 const useStyles = makeStyles((theme) => ({
-    root: {
-      minWidth: 750,
-    },
-    media: {
-      height: 0,
-      paddingTop: '56.25%', // 16:9
-    },
-    expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-    expandOpen: {
-      transform: 'rotate(180deg)',
-    },
-  
-  }));
+  root: {
+    minWidth: 750,
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
+  },
+}));
 
 export default function ChuyenXe(props) {
-    const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
- 
+  const duration = () => {
+    let start = moment(props.thongTin.ngayDi); // some random moment in time (in ms)
+    let end = moment(props.thongTin.ngayDen); // some random moment after start (in ms)
+    let diff = (end-start)
+    // console.log((new Date(props.thongTin.ngayDen)).toLocaleTimeString())
+    // console.log(diff)
+    // console.log(end-start)
+
+    
+    return moment.duration(diff).format("h");
+  };
+
   return (
     <div className="chi-tiet-chuyen-xe">
       <Paper className={`p-1 ${classes.root}`}>
@@ -47,16 +65,21 @@ export default function ChuyenXe(props) {
           <div className="content-left">
             <img
               alt="anhXe"
-              src={(props.thongTin && props.thongTin.thongTinXe )? props.thongTin.thongTinXe.hinhAnh : ''
-            }
+              src={
+                props.thongTin && props.thongTin.thongTinXe
+                  ? props.thongTin.thongTinXe.hinhAnh
+                  : ""
+              }
             />
           </div>
           <div className="content-center">
             <p>
-        <span className='content-center-daily'>{
-            props.thongTin.thongTinXe.daiLyXe.ten
-        }</span>
-              <span className='content-center-danhgia'>• {props.thongTin.thongTinXe.danhSachDanhGia.length} Đánh giá</span>
+              <span className="content-center-daily">
+                {props.thongTin.thongTinXe.daiLyXe.ten}
+              </span>
+              <span className="content-center-danhgia">
+                • {props.thongTin.thongTinXe.danhSachDanhGia.length} Đánh giá
+              </span>
             </p>
             <p>{`${props.thongTin.thongTinXe.tenXe} ${props.thongTin.thongTinXe.loaiXe.sucChua} chỗ`}</p>
             <div className="from-to">
@@ -84,30 +107,37 @@ export default function ChuyenXe(props) {
                   fill="#787878"
                 />
               </svg>
-          
-            <div className="from-to-content">
-              <div className="content-from">
-    <div className="hour pr-3">{moment(props.thongTin.ngayDi).format('HH:MM')}</div>
-                <div className="place">•    {props.thongTin.dauBen}</div>
+
+              <div className="from-to-content">
+                <div className="content-from">
+                  <div className="hour pr-3">
+                    {moment(props.thongTin.ngayDi).format("HH:MM")}
+                  </div>
+                  <div className="place">• {props.thongTin.dauBen}</div>
+                </div>
+                <div className="duration">
+                  {duration()} h
+                </div>
+                <div className="content-to">
+                  <div className="hour pr-3">
+                    {moment(props.thongTin.ngayDen).format("HH:MM")}
+                  </div>
+                  <div className="place">• {props.thongTin.cuoiBen} </div>
+                </div>
               </div>
-              <div className="duration">4h</div>
-              <div className="content-to">
-                <div className="hour pr-3">{moment(props.thongTin.ngayDen).format('HH:MM')}</div>
-                <div className="place">•   {props.thongTin.cuoiBen} </div>
-              </div>
-            </div>
             </div>
           </div>
           <div className="content-right ml-5">
-             { `${props.thongTin.giaVe} VNĐ`}
+            {`${props.thongTin.giaVe} VNĐ`}
           </div>
         </div>
 
-
         <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })+' outline'}
+          className={
+            clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            }) + " outline"
+          }
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
@@ -115,15 +145,10 @@ export default function ChuyenXe(props) {
           <ExpandMoreIcon />
         </IconButton>
 
-
-
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <TabChuyenXe thongTin={props.thongTin} />
-     </Collapse>
-
-
+        </Collapse>
       </Paper>
     </div>
   );
 }
-

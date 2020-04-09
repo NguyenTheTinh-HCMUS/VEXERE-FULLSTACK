@@ -16,20 +16,9 @@ import rootReducers from './redux/reducers/index'
 
 
 import App from './App/App';
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store=createStore(rootReducers,
-    composeEnhancer(applyMiddleware(thunk)))
-ReactDOM.render(
-    <Provider store={store}>
-         <App />
-
-    </Provider>
-   , 
-    document.getElementById('root')
-);
-
+// const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const store=createStore(rootReducers,
-//     applyMiddleware(thunk))
+//     composeEnhancer(applyMiddleware(thunk)))
 // ReactDOM.render(
 //     <Provider store={store}>
 //          <App />
@@ -38,3 +27,14 @@ ReactDOM.render(
 //    , 
 //     document.getElementById('root')
 // );
+
+const store=createStore(rootReducers,
+    applyMiddleware(thunk))
+ReactDOM.render(
+    <Provider store={store}>
+         <App />
+
+    </Provider>
+   , 
+    document.getElementById('root')
+);

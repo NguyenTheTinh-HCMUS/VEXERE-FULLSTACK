@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === "development";
 const VENDOR_LIBS = [
   "axios",
@@ -88,7 +89,11 @@ const config = {
     new MiniCssExtractPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
       chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
-    })
+    }),
+    new MomentLocalesPlugin(),
+    new MomentLocalesPlugin({
+      localesToKeep: ['es-us', 'ru'],
+  })
   ],
   resolve: {
    
