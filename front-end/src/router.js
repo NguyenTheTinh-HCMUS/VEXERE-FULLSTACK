@@ -4,6 +4,7 @@ import Signup from './pages/auth/sigup'
 import XacNhanMatKhau from './pages/XacNhanMatKhau'
 import NotFound from './pages/NotFound'
 import TimChuyenXe from './pages/timchuyenxe'
+import DatVe from './pages/datve'
 export const routeHome=[
     {
         path: '/',
@@ -29,6 +30,13 @@ export const routeHome=[
         path: '/TimChuyenXe/:tuyenDuong/:ngayDi',
         exact: false,
         component: TimChuyenXe
+    },
+    {
+        
+        path: '/DatVe/:id',
+        exact: false,
+        component: DatVe
+
     }
     ,
     {

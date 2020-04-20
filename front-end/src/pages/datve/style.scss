@@ -1,0 +1,73 @@
+.DatVe{
+    margin-top: 70px;
+  
+    .DatVe__box{
+        margin: 0 1rem;
+        
+        .box__left{
+            .left__top{
+                &>h5{
+                    font-size: 18px;
+                    padding-top: 2rem;
+                    color: red;
+                    font-weight: 400;
+                }
+                border: 1px solid #ddd;
+                text-align: center;
+                height: 300px;
+                .top__handle{
+                    margin-top: 1rem;
+                }
+                .top__datve{
+                    padding: 1rem;
+                    .datve__soghe{
+                        display: flex;
+                        justify-content: space-between;
+                        .soghe__heading{
+                            font-size: 16px;
+                        }
+                    }
+                    .datve__tongtien{
+                        display: flex;
+                        justify-content: space-between;
+                        .tongtien__heading{
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+            }
+            .left__bottom{
+                margin-top: 1rem;
+                border: 1px solid #ddd;
+
+             
+                h5{
+                    font-size: 18px;
+                    padding-top: 2rem;
+                    color: red;
+                    font-weight: 400;
+                    text-align: center;
+                }
+                .bottom_content{
+                    .content__item{
+                        padding: .5rem;
+                        margin-left: 1rem;
+                        strong{
+                            margin-left: .5rem;
+                            margin-right: .5rem;
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+        .box_right{
+
+        }
+    }
+}
+.MuiAutocomplete-popper{
+    top: -70px !important;}

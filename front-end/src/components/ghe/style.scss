@@ -1,0 +1,15 @@
+.ghe{
+    &.ghe-trong{
+        color: #807c7c;
+        cursor: pointer;
+    }
+    &.ghe-chon{
+        color: green;
+        cursor: pointer;
+    }
+    &.ghe-khongTrong{
+        color: red;
+        cursor: no-drop;
+    }
+    
+}

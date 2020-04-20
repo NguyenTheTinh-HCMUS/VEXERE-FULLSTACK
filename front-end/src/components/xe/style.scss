@@ -1,0 +1,52 @@
+.xe{
+    .xe__chuthich{
+        margin-top: 1rem;
+        // background-color: #dad6d63d;
+        display: flex;
+        .chuthich__item{
+            display: flex;
+            margin-right: 1rem;
+        }
+
+        .chuthich__trong{
+            .trong__mau{
+                height: 30px;
+                width: 30px;
+                background-color: #807c7c;
+                border-radius: 3px;
+               
+            }
+            .trong__heading{
+                margin-left: 1rem;
+
+            }
+        }
+
+        .chuthich__chon{
+            .chon__mau{
+                height: 30px;
+                width: 30px;
+                background-color: green;
+                border-radius: 3px;
+               
+            }
+            .chon__heading{
+                margin-left: 1rem;
+
+            }
+        }
+        .chuthich__khongTrong{
+            .khongTrong__mau{
+                height: 30px;
+                width: 30px;
+                background-color: red;
+                border-radius: 3px;
+               
+            }
+            .khongTrong__heading{
+                margin-left: 1rem;
+
+            }
+        }
+    }
+}

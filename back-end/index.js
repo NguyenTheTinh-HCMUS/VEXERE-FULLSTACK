@@ -11,6 +11,8 @@ const DanhSachDiaDiemDenRouter = require("./api/routes/DanhSachDiaDiemDen.router
 const TimChuyenXeRouter = require("./api/routes/TimChuyenXe.route");
 const XacNhanMail=require('./api/routes/XacNhanMail.route')
 const DanhGiaRouter=require('./api/routes/DanhGia.router')
+const ChuyenXeRouter=require('./api/routes/ChuyenXe.router')
+const VeRouter=require('./api/routes/Ve.router')
 //seting cross origin resource sharing
 app.use(cors());
 
@@ -44,6 +46,8 @@ app.use("/DanhSachDiaDiemDen", DanhSachDiaDiemDenRouter);
 app.use("/TimChuyenXe", TimChuyenXeRouter);
 app.use('/XacNhanMail',XacNhanMail)
 app.use('/DanhGia',DanhGiaRouter)
+app.use('/ChuyenXe',ChuyenXeRouter)
+app.use('/Ve',VeRouter)
 //
 
 

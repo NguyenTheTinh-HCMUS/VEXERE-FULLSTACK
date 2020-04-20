@@ -1,0 +1,26 @@
+.xe40{
+    .xe40__tang2{
+        background-color: #dad6d63d;
+        padding: 1rem;
+        .tang2__item{
+            display: flex;
+            &>p{
+                margin-right: 1rem;
+
+            }
+        }
+    }
+    .xe40__tang1{
+        margin-top: 20px;
+        padding: 1rem;
+        background-color: #dad6d63d;
+        .tang1__item{
+            display: flex;
+            &>p{
+                margin-right: 1rem;
+
+            }
+        }
+
+    }
+}

@@ -8,6 +8,7 @@ import {
   Typography,
   IconButton,
 } from "@material-ui/core";
+import Button from '@material-ui/core/Button';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
 import "./style.scss";
@@ -16,6 +17,7 @@ import momentDurationFormatSetup from 'moment-duration-format'
 import TabChuyenXe from "../tab-chuyen-xe";
 import "../scss/index.scss";
 momentDurationFormatSetup(moment)
+import {Link} from 'react-router-dom'
 // import {connect} from 'react-redux'
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -132,7 +134,9 @@ export default function ChuyenXe(props) {
           </div>
         </div>
 
-        <IconButton
+     <div style={{justifyContent: 'space-between', display: 'flex'}}>
+    <div>
+    <IconButton
           className={
             clsx(classes.expand, {
               [classes.expandOpen]: expanded,
@@ -144,6 +148,15 @@ export default function ChuyenXe(props) {
         >
           <ExpandMoreIcon />
         </IconButton>
+    </div  > 
+       <div>
+      <Link to={`/DatVe/${props.thongTin._id}`}>
+      <Button variant="contained" className='outline bg-warning' size='large'  >
+         Mua Vé
+      </Button>
+      </Link>
+       </div>
+     </div>
 
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <TabChuyenXe thongTin={props.thongTin} />
