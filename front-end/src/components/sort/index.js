@@ -1,10 +1,14 @@
 import React from 'react'
+import useDidMountEffect from '../../hooks/useDidMountEffect'
 
-export default function Sort(props) {
-    const [sort, setsort] = React.useState(1)
+export default function Sort (props) {
+    const [sort, setsort] = React.useState(-1)
     const handleOnclick=()=>{
         setsort(sort*(-1))
     }
+    useDidMountEffect(() => {
+        props.handleSort(sort)
+    }, [sort])
     return (
         <div onClick={handleOnclick} style={{cursor: 'pointer'}}>
             <span className='pr-1'>{props.titile}: </span>
@@ -15,3 +19,4 @@ export default function Sort(props) {
         </div>
     )
 }
+

@@ -43,3 +43,27 @@ export const DanhGia_Socket=danhGia=>({
     type: Types.SOCKET_DANHGIA,
     danhGia
 })
+export const LocGio_action=values=>({
+    type: Types.LOC_GIO,
+    values
+})
+export const LocGia_action=values=>({
+    type: Types.LOC_GIA,
+    values
+})
+export const LocCho_action=values=>({
+    type: Types.LOC_CHO,
+    values
+})
+export const sortGia_action=check=>({
+    type: Types.SORT_GIA,
+    check
+})
+export const sortGio_action=check=>({
+    type: Types.SORT_GIO,
+    check
+})
+
+export const BoLoc_action=()=>({
+    type: Types.BO_LOC
+})

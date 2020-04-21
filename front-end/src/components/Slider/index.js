@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography,Grid} from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
+import {connect} from 'react-redux'
 
 const useStyles = makeStyles({
   root: {
@@ -19,14 +20,25 @@ const useStyles = makeStyles({
 function valuetext(value) {
   return `${value}°C`;
 }
-
-export default function SliderCustom(props) {
+const mapStateToProps=state=>({
+  boLoc: state.timChuyenXe.boLoc
+})
+const SliderCustom=connect(mapStateToProps,null) (function (props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(props.default);
+  React.useEffect(() => {
+    props.handleChange(value)
+  }, [value])
+  React.useEffect(() => {
+    if(props.boLoc){
+      setValue([props.min,props.max])
+    }
+    
+  }, [props.boLoc])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    // props.handleChange(value)
+    
   };
 
   return (
@@ -60,4 +72,5 @@ export default function SliderCustom(props) {
      
     </div>
   );
-}
+})
+export default SliderCustom

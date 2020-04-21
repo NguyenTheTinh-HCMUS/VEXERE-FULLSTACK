@@ -16,7 +16,7 @@ export default function DanhSachDanhGia(props) {
     return (
         <div className={`comment-list ${classes.list}`}>
             {(props.danhSach && props.danhSach.length>0) ?
-            props.danhSach.map((item,index)=>   <DanhGia key={index} danhGia={item} 
+            props.danhSach.map((item)=>   <DanhGia key={item._id} danhGia={item} 
             xe={props.xe}
             
             

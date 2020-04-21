@@ -21,6 +21,13 @@ import Xe from "../../components/xe/index";
 import { trangThaiGhe } from "../../constants/index";
 import ThongTinKhachHang from "../../components/thong-tin-khach-hang";
 import ThanhToan from "../../components/thanh-toan";
+import io from 'socket.io-client'
+import {SOCKET_SERVER} from '../../constants/config.api'
+import {chonGhe_action,boGhe_action,createSocket_action,huyTatGhe_action} from '../../redux/actions/datve.action'
+import useDidMountEffect from '../../hooks/useDidMountEffect'
+import {POST_DATVE} from '../../constants/config.api'
+import callApI,{callAPPIWithToken} from '../../utils/callApi'
+import Snackbar from '@material-ui/core/Snackbar';
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -32,19 +39,114 @@ function DatVe(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [tiepTuc, settiepTuc] = useState(true)
-  const [thongTin, setthongTin] = useState({})
+  const [thongTin, setthongTin] = useState({
+    hoTen: "" ,
+    email:"" ,
+    soDienThoai:"" 
+  })
+  const [snackBar, setsnackBar] = useState(false)
 
-
-  const handleNext = () => {
-    if (activeStep === 0) {
-      if (localStorage.getItem("TAIKHOAN")) {
-        setActiveStep((prevActiveStep) => prevActiveStep + 2);
-      } else {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      }
-      return;
+  // socket io
+  useEffect(() => {
+    props.createSocket(io(SOCKET_SERVER))
+  }, [])
+  useDidMountEffect(() => {
+  
+    if(props.gheChon){
+   
+    props.socket.emit('chon-ghe-client',{
+      _id: props.gheChon._id,
+      chuyenXe: props.match.params.id
+    })
     }
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  
+  }, [props.gheChon])
+
+  useDidMountEffect(() => {
+    if(props.gheBo){
+     
+      props.socket.emit('ghe-bo-client',{
+        _id: props.gheBo._id,
+        chuyenXe: props.match.params.id
+      })
+    }
+   
+  }, [props.gheBo])
+  useEffect(() => {
+    if(props.socket){
+      props.socket.on('chon-ghe-server',(data)=>{
+        if(data.chuyenXe===props.match.params.id){
+          props.chonGhe(data._id)
+        }
+       
+      })
+      props.socket.on('ghe-bo-server',(data)=>{
+        if(data.chuyenXe===props.match.params.id){
+          props.boGhe(data._id)
+        }
+        
+      })
+      props.socket.on('huy-tat-ghe-server',data=>{
+        if(data.chuyenXe===props.match.params.id){
+          props.huyTatGhe(data.dsGhe)
+
+        }
+      
+      })
+    }
+  }, [props.socket])
+  // 
+  const handleNext = () => {
+    if(activeStep<=1){
+      if (activeStep === 0) {
+        if (localStorage.getItem("TAIKHOAN")) {
+          setActiveStep((prevActiveStep) => prevActiveStep + 2);
+        } else {
+          setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        }
+        return;
+      }
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
+    else{
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      if(localStorage.getItem('TAIKHOAN')){
+        callAPPIWithToken('POST',POST_DATVE,{
+          ds_ghe:props.danhSachGhe.filter(item=>item.status===trangThaiGhe[3]).map(item=>item._id),
+          chuyenXe: props.match.params.id,
+          tram:props.tram._id,
+          taiKhoan: JSON.parse(localStorage.getItem('TAIKHOAN'))._id
+        },{
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('TAIKHOAN')).access_token}`
+      }).then(res=>{
+        setTimeout(() => {
+         
+          // props.history.push('/')
+          window.location.href='/'
+        }, 2000);
+       
+        setsnackBar(true)
+
+      }).catch(error=>console.log(error))
+
+      }
+      else{
+       
+        callApI('POST',POST_DATVE,{
+          ds_ghe:props.danhSachGhe.filter(item=>item.status===trangThaiGhe[3]).map(item=>item._id),
+          chuyenXe: props.match.params.id,
+          tram:props.tram._id,
+          thongTin:thongTin
+        }).then(res=>{
+          setTimeout(() => {
+            
+            window.location.href='/'
+          }, 2000);
+          setsnackBar(true)
+
+        }).catch(erro=>console.log(erro))
+      }
+    }
   };
 
   const handleBack = () => {
@@ -149,7 +251,7 @@ function DatVe(props) {
                   color="primary"
                   className="outline mr-1"
                   onClick={handleBack}
-                  disabled={activeStep < 1}
+                  disabled={activeStep < 1 || activeStep>=3}
                 >
                   Quay lại
                 </Button>
@@ -158,7 +260,7 @@ function DatVe(props) {
                   color="secondary"
                   className="outline ml-1"
                   onClick={handleNext}
-                  disabled={tiepTuc}
+                  disabled={tiepTuc || activeStep>=3}
                 >
                   Tiếp tục
                 </Button>
@@ -225,12 +327,19 @@ function DatVe(props) {
           </div>
           <div className="box_right col-8">{activeStep === 0 && <Xe />}
           {activeStep === 1 && <ThongTinKhachHang handleErrors={handleErrors} values={thongTin}  />}
-          {activeStep === 2 && <ThanhToan />}
+          {activeStep >= 2 && <ThanhToan />}
           </div>
         </div>
       </div>
 
-      <div></div>
+      <Snackbar
+        anchorOrigin={{ vertical:'top', horizontal:'right' }}
+       
+        open={snackBar}
+       
+        message="Chúc mừng bạn đặt vé thành công! Vui lòng check lại mail."
+        
+      />
 
       <Backdrop className={classes.backdrop} open={!props.loaded}>
         <CircularProgress color="inherit" />
@@ -243,12 +352,19 @@ function DatVe(props) {
 const mapDispatchToProps = (dispatch) => ({
   layThongTinChuyenXe: (chuyenXeID) =>
     dispatch(thongTinChuyenXe_request_action(chuyenXeID)),
+  chonGhe:_id=>dispatch(chonGhe_action(_id)),
+  boGhe:_id=>dispatch(boGhe_action(_id)),
+  createSocket:socket=>dispatch(createSocket_action(socket)),
+  huyTatGhe:data=>dispatch(huyTatGhe_action(data))
 });
 const mapStateToprops = (state) => ({
   loaded: state.datVeReducer.loaded,
-  // thongTinChuyenXe: {},
   thongTinChuyenXe: state.datVeReducer.thongTinChuyenXe,
   danhSachGhe: state.datVeReducer.danhSachGhe,
+  gheChon:  state.datVeReducer.gheChon,
+  gheBo: state.datVeReducer.gheBo,
+  socket: state.datVeReducer.socket,
+  tram: state.datVeReducer.tram
 });
 
 export default connect(mapStateToprops, mapDispatchToProps)(DatVe);

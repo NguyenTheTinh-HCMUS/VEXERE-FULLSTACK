@@ -21,3 +21,20 @@ export const HandleGhe_Action=thongTin=>({
     type:Types.HANDLE_GHE,
     thongTinGhe:thongTin
 })
+
+export const chonGhe_action=(_id)=>({
+    type: Types.HANDLE_CHONGHE,
+    _id
+})
+export const boGhe_action=_id=>({
+    type: Types.HANDLE_BOGHE,
+    _id
+})
+export const createSocket_action=socket=>({
+    type:Types.CREATE_SOCKET,
+    socket
+})
+export const huyTatGhe_action=data=>({
+    type: Types.HUY_TAT_GHE,
+    data
+})

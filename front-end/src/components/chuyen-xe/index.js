@@ -48,13 +48,10 @@ export default function ChuyenXe(props) {
   };
 
   const duration = () => {
-    let start = moment(props.thongTin.ngayDi); // some random moment in time (in ms)
-    let end = moment(props.thongTin.ngayDen); // some random moment after start (in ms)
+    let start = moment(props.thongTin.ngayDi); 
+    let end = moment(props.thongTin.ngayDen); 
     let diff = (end-start)
-    // console.log((new Date(props.thongTin.ngayDen)).toLocaleTimeString())
-    // console.log(diff)
-    // console.log(end-start)
-
+    
     
     return moment.duration(diff).format("h");
   };
@@ -62,7 +59,7 @@ export default function ChuyenXe(props) {
   return (
     <div className="chi-tiet-chuyen-xe">
       <Paper className={`p-1 ${classes.root}`}>
-        <div className="heading mb-2">40 chỗ còn trống</div>
+  <div className="heading mb-2">{props.thongTin.thongTinXe && `${props.thongTin.thongTinXe.loaiXe.sucChua} chỗ`}</div>
         <div className="content">
           <div className="content-left">
             <img

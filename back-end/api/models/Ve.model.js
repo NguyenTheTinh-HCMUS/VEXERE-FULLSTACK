@@ -5,7 +5,7 @@ const orderSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   maVe: { type: String, unique: true, required: true },
   ngayDat: { type: mongoose.Schema.Types.Date, default: Date.now() },
-  ds_ghe: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ghe", unique: true }],
+  ds_ghe: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ghe" }],
   tram: { type: mongoose.Schema.Types.ObjectId, ref: "Tram" },
   chuyenXe: {
     type: mongoose.Schema.Types.ObjectId,
@@ -19,5 +19,5 @@ const orderSchema = mongoose.Schema({
     soDienThoai: { type: String,match:/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/},
   },
 });
-orderSchema.plugin(arrayUniquePlugin);
+// orderSchema.plugin(arrayUniquePlugin);
 module.exports = mongoose.model("Ve", orderSchema, "Ve");

@@ -1,52 +1,80 @@
-.xe{
-    .xe__chuthich{
-        margin-top: 1rem;
-        // background-color: #dad6d63d;
-        display: flex;
-        .chuthich__item{
-            display: flex;
-            margin-right: 1rem;
-        }
+.xe {
+  display: flex;
+  .xe__chuthich {
+    position: relative;
+    width: 15%;
+    height: 500px;
 
-        .chuthich__trong{
-            .trong__mau{
-                height: 30px;
-                width: 30px;
-                background-color: #807c7c;
-                border-radius: 3px;
-               
-            }
-            .trong__heading{
-                margin-left: 1rem;
-
-            }
-        }
-
-        .chuthich__chon{
-            .chon__mau{
-                height: 30px;
-                width: 30px;
-                background-color: green;
-                border-radius: 3px;
-               
-            }
-            .chon__heading{
-                margin-left: 1rem;
-
-            }
-        }
-        .chuthich__khongTrong{
-            .khongTrong__mau{
-                height: 30px;
-                width: 30px;
-                background-color: red;
-                border-radius: 3px;
-               
-            }
-            .khongTrong__heading{
-                margin-left: 1rem;
-
-            }
-        }
+    .chuthich__item {
+      position: absolute;
+      display: flex;
+      margin-right: 1rem;
+      transform: rotate(90deg);
+     
+      
+      width: 150px;
     }
+
+    .chuthich__trong {
+        left: -40px;
+        top: 100px;
+      .trong__mau {
+        height: 20px;
+        width: 20px;
+        background-color: #807c7c;
+        border-radius: 3px;
+      }
+      .trong__heading {
+        margin-left: 1rem;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+
+    .chuthich__chon {
+        left: -40px;
+        top: 250px;
+      .chon__mau {
+        height: 20px;
+        width: 20px;
+        background-color: green;
+        border-radius: 3px;
+      }
+      .chon__heading {
+        margin-left: 1rem;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+    .chuthich__khongTrong {
+        left: 10px;
+        top: 100px;
+      .khongTrong__mau {
+        height: 20px;
+        width: 20px;
+        background-color: red;
+        border-radius: 3px;
+      }
+      .khongTrong__heading {
+        margin-left: 1rem;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+    .chuthich__cam {
+        left: 10px;
+        top: 250px;
+      .cam__mau {
+        height: 20px;
+        width: 20px;
+        background-color: black;
+        border-radius: 3px;
+      }
+      .cam__heading {
+        margin-left: 1rem;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
 }

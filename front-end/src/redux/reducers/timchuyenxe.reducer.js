@@ -1,10 +1,13 @@
 import * as TYPES from "../types/index";
+import moment from 'moment'
 const initialState = {
   thongTinChuyenXe: {},
   loaded: false,
   ds_hienThi: [],
   soketLike: null,
   socketDanhGia: null,
+  socket: null,
+  boLoc: null
 };
 
 const timChuyenXe = (state = initialState, action) => {
@@ -32,7 +35,7 @@ const timChuyenXe = (state = initialState, action) => {
         ];
         state.ds_hienThi = [
           ...state.ds_hienThi.slice(0, pos),
-          temp,
+          {...temp},
           ...state.ds_hienThi.slice(pos + 1),
         ];
       }
@@ -107,9 +110,89 @@ const timChuyenXe = (state = initialState, action) => {
   
         return { ...state };
       }
+      case TYPES.CREATE_SOCKET:{
+        state.socket=action.socket
+        return {...state}
+      }
+case TYPES.LOC_GIO:{
+ 
+  if(state.thongTinChuyenXe.ds_chuyenXe){
+    state.ds_hienThi= locGio(state.thongTinChuyenXe.ds_chuyenXe,action.values)
+  }
+
+  
+  return {...state}
+}
+case TYPES.LOC_GIA:{
+  if(state.thongTinChuyenXe.ds_chuyenXe){
+    state.ds_hienThi= locGia(state.thongTinChuyenXe.ds_chuyenXe,action.values)
+  }
+  return {...state}
+}
+case TYPES.LOC_CHO:{
+ 
+  if(state.thongTinChuyenXe.ds_chuyenXe){
+    state.ds_hienThi= locCho(state.thongTinChuyenXe.ds_chuyenXe,action.values)
+  }
+
+  return {...state}
+}
+case TYPES.BO_LOC:{
+  
+  state.boLoc=(new Date()).toISOString()
+  state.ds_hienThi = state.thongTinChuyenXe.ds_chuyenXe;
+ 
+  return {...state}
+}
+case TYPES.SORT_GIA:{
+  state.ds_hienThi=JSON.parse(JSON.stringify(sortGia(state.ds_hienThi,action.check)))
+  return {...state}
+}
+case TYPES.SORT_GIO:{
+  console.log(sortGio(state.ds_hienThi,action.check))
+  state.ds_hienThi=JSON.parse(JSON.stringify(sortGio(state.ds_hienThi,action.check)))
+  return {...state}
+}
 
     default:
       return state;
   }
 };
+
+const locGio=(ds_chuyen,range)=>{
+  
+  
+  return ds_chuyen.filter(item=> moment(item.ngayDi).hour()>=range[0] && moment(item.ngayDi).hour()<=range[1] )
+}
+const locGia=(ds_chuyen,range)=>{
+  
+  
+  return ds_chuyen.filter(item=> item.giaVe>=range[0] && item.giaVe<=range[1] )
+}
+const locCho=(ds_chuyen,range)=>{
+  
+  
+  return ds_chuyen.filter(item=> item.thongTinXe.loaiXe.sucChua>=range[0] &&  item.thongTinXe.loaiXe.sucChua<=range[1] )
+}
+
+const sortGia=(ds_chuyen,check)=>{
+  if(check>0){
+    return ds_chuyen.sort((a,b)=>a.giaVe-b.giaVe)
+
+  }
+  else{
+    return ds_chuyen.sort((a,b)=>b.giaVe-a.giaVe)
+  }
+}
+const sortGio=(ds_chuyen,check)=>{
+  if(check>0){
+    return ds_chuyen.sort((a,b)=>moment(a.ngayDi).hour()>moment(b.ngayDi).hour())
+
+  }
+  else{
+    return ds_chuyen.sort((a,b)=>moment(a.ngayDi).hour()<moment(b.ngayDi).hour())
+  }
+}
+
+
 export default timChuyenXe;

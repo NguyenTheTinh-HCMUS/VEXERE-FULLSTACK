@@ -29,7 +29,7 @@ function Xe(props) {
                         Ghế Trống
                     </div>
                 </div>
-                <div className='chuthich__chon chuthich__item'>
+                 <div className='chuthich__chon chuthich__item'>
                     <div className='chon__mau '>
                     </div>
                     <div className='chon__heading'>
@@ -41,7 +41,14 @@ function Xe(props) {
                     <div className='khongTrong__mau '>
                     </div>
                     <div className='khongTrong__heading'>
-                        Ghế đã được đặt
+                        Ghế có người
+                    </div>
+                </div>
+                <div className='chuthich__cam chuthich__item'>
+                    <div className='cam__mau '>
+                    </div>
+                    <div className='cam__heading'>
+                        Ghế xử lí
                     </div>
                 </div>
 

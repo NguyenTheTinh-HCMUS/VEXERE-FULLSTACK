@@ -13,7 +13,7 @@ export default function XacNhanMatKhau(props) {
     useEffect(() => {
      let token=props.match.params.token
         token=token.split("'a'").join('.')
-        console.log(token)
+
         Axios({
             method: 'POST',
             url: POST_KIEMTRAHANTOKEN            ,

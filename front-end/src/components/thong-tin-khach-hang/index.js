@@ -20,9 +20,11 @@ function FromThongTinKhachHang(props) {
     props.handleErrors( Object.keys(props.errors),props.values)
     }, [props.errors])
     React.useEffect(() => {
-      if(Object.keys(props.values).lenght===0){
+      if(props.values.hoTen===''){
         props.handleErrors( [1,3],props.values)
       }
+
+     
      }, [])
   return (
     <div className='thongtinkhachhang'>

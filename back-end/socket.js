@@ -13,6 +13,17 @@ module.exports = (app) => {
     socket.on('Handle-DanhGia-Client',data=>{
         socket.broadcast.emit('Handle-DanhGia-Server',data)
     })
+    socket.on('chon-ghe-client',(data)=>{
+      socket.broadcast.emit('chon-ghe-server',data)
+    })
+    socket.on('ghe-bo-client',(data)=>{
+     
+      socket.broadcast.emit('ghe-bo-server',data)
+    })
+    socket.on('huy-tat-ghe-client',data=>{
+      
+      socket.broadcast.emit('huy-tat-ghe-server',data)
+    })
   });
   server.listen(3001, () => {
     console.log("Socket Server is running 3001");

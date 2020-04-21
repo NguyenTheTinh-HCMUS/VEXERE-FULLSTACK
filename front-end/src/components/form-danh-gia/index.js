@@ -43,7 +43,6 @@ const useStyle=makeStyles(them=>({
       
     }
     const [text, setText] = React.useState('')
-    // console.log(props.thongTin)
 
   const handleOnchangeText=(e)=>{
     setText(e.target.value)

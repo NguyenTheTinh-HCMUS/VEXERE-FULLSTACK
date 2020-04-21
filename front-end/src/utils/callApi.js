@@ -13,15 +13,15 @@ export const callAPIWithFileData=(method,url,data=null)=>{
 
 }
 
-
-
-
-
-
-
-
-
-
+export const callAPPIWithToken=(method,url,data,headers)=>{
+    const object={
+        method,
+        url,
+        data,
+        headers
+    }
+    return Axios(object)
+}
 
 
 
